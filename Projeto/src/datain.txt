@@ -1,0 +1,36 @@
+11
+Maria da Silva
+maria@email.com
+111111111-11
+-1
+22
+Stark Industries Corp. Ltd.
+stark@stark.com
+22222222/0001-22
+Industrias Stark
+-1
+333
+Tetris
+2000
+3.3
+AVENTURA
+444
+War
+2020
+4.4
+ESTRATEGIA
+-1
+5555
+55
+11
+333
+6666
+66
+22
+444
+-1
+444
+AVENTURA
+22
+Stark Inc.
+444
