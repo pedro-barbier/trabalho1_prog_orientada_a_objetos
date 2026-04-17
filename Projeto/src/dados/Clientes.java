@@ -1,3 +1,5 @@
+package dados;
+
 public abstract class Clientes {
     private int numero;
     private String nome;

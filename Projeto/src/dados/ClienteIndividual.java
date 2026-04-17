@@ -1,3 +1,5 @@
-public class ClienteIndividual extends Cliente {
+package dados;
+
+public class ClienteIndividual extends Clientes {
 
 }
