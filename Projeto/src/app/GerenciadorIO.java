@@ -1,11 +1,5 @@
 package app;
 
-import java.util.Scanner;
-import java.io.PrintStream;
-
-/**
- * Interface para gerenciar redirecionamento de entrada e saída
- */
 public interface GerenciadorIO {
     
     /**
@@ -28,13 +22,4 @@ public interface GerenciadorIO {
      */
     void restauraSaida();
     
-    /**
-     * Obtém o Scanner configurado
-     */
-    Scanner obterScanner();
-    
-    /**
-     * Obtém o PrintStream configurado
-     */
-    PrintStream obterPrintStream();
 }

@@ -1,5 +1,5 @@
 package dados;
 
-public enum Categoria {
-
+public enum Categoria { 
+    AVENTURA, ESTRATEGIA, CORRIDA
 }
