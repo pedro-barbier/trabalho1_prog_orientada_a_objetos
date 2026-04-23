@@ -9,9 +9,9 @@ import java.nio.charset.Charset;
 import java.util.Locale;
 import java.util.Scanner;
 
-public class GerenciadorIOArquivos implements GerenciadorIO {
+public class GerenciadorIOArquivos {
     // Atributos para redirecionamento de E/S
-    private Scanner entrada = new Scanner(System.in);;
+    public Scanner entrada = new Scanner(System.in);;
     private PrintStream saidaPadrao = System.out;
     private final String nomeArquivoEntrada;
     private final String nomeArquivoSaida;
@@ -20,11 +20,13 @@ public class GerenciadorIOArquivos implements GerenciadorIO {
         this.nomeArquivoEntrada = nomeArquivoEntrada;
         this.nomeArquivoSaida = nomeArquivoSaida;
     }
-    
 
+    public String getEntrada() {
+        return this.entrada.nextLine();
+    }
+    
     // Redireciona Entrada de dados para arquivos em vez de teclado
     // Chame este metodo para redirecionar a leitura de dados para arquivos
-    @Override
     public void redirecionaEntrada() {
         try {
             BufferedReader streamEntrada = new BufferedReader(new FileReader(nomeArquivoEntrada));
@@ -39,7 +41,6 @@ public class GerenciadorIOArquivos implements GerenciadorIO {
     
     // Redireciona Saida de dados para arquivos em vez da tela (terminal)
     // Chame este metodo para redirecionar a escrita de dados para arquivos
-    @Override
     public void redirecionaSaida() {
         try {
             PrintStream streamSaida = new PrintStream(new File(nomeArquivoSaida), Charset.forName("UTF-8"));
@@ -52,14 +53,12 @@ public class GerenciadorIOArquivos implements GerenciadorIO {
     
     // Restaura Entrada padrao para o teclado
     // Chame este metodo para retornar a leitura de dados para o teclado
-    @Override
     public void restauraEntrada() {
         entrada = new Scanner(System.in);
     }
     
     // Restaura Saida padrao para a tela (terminal)
     // Chame este metodo para retornar a escrita de dados para a tela
-    @Override
     public void restauraSaida() {
         System.setOut(saidaPadrao);
     }
