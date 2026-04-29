@@ -12,3 +12,11 @@
 4:1111;11;11;555
 4:2222;22;44;666
 4:3333;33;11;777
+5:888;Star Wars Jedi: Survivor;AVENTURA
+6:AVENTURA;555;God of War
+6:AVENTURA;888;Star Wars Jedi: Survivor
+7:22;Coiote da ACME;coiote@gmail.com;222222222-22
+8:contrato removido: 2222
+9:1111;11;11;555
+9:3333;33;11;777
+10:11;Papaleguas;bipbip@email.com;13.2
