@@ -1,5 +1,7 @@
 package app;
 
+import java.util.ArrayList;
+
 import dados.*;
 
 public class ACMESpiele {
@@ -30,7 +32,9 @@ public class ACMESpiele {
 
             cliente = new ClienteIndividual(numero, nome, email, cpf);
 
-            clientes.adicionar(cliente);
+            if (clientes.adicionar(cliente)) {
+                System.out.println(cliente.descrever());
+            } else { System.out.println("1:erro-numero repetido."); }
         }
 
         /**
@@ -46,7 +50,9 @@ public class ACMESpiele {
 
             cliente = new ClienteCorporativo(numero, nome, email, cnpj, nomeFantasia);
 
-            clientes.adicionar(cliente);
+            if (clientes.adicionar(cliente)) {
+                System.out.println(cliente.descrever());
+            } else { System.out.println("2:erro-numero repetido."); }
         }
 
         /**
@@ -69,7 +75,9 @@ public class ACMESpiele {
 
             jogo = new Jogo(codigo, nome, ano, valorMinuto, categoria);
 
-            jogos.adicionar(jogo);
+            if (jogos.adicionar(jogo)) {
+                System.out.println(jogo.descrever());
+            } else { System.out.println("3:erro-codigo repetido."); }
         }
 
         /**
@@ -95,8 +103,104 @@ public class ACMESpiele {
 
             contrato = new Contrato(id, periodo, cliente, jogo);
 
-            contratos.adicionar(contrato);
+            if (contratos.adicionar(contrato)) {
+                System.out.println(contrato.descrever());
+            } else { System.out.println("4:erro-id repetido."); }
         }
+
+        // Passo 5
+        int codigo = Integer.parseInt(IO.getEntrada());
+        jogo = jogos.buscar(codigo);
+        if (jogo == null) {
+            System.out.println("5:erro-codigo inexistente.");
+        } else {
+            System.out.println("5:" + jogo.getCodigo() + ";" 
+                                    + jogo.getNome() + ";"
+                                    + jogo.getCategoria().getDescricao());
+        }
+
+        // Passo 6
+        Categoria categoria;
+        try {
+            categoria = Categoria.valueOf(IO.getEntrada());
+            ArrayList<Jogo> jogosCategoria = jogos.buscar(categoria);
+            if (jogosCategoria.isEmpty()) {
+                System.out.println("6:erro-nenhum jogo encontrado.");
+            } else {
+                for (Jogo j : jogosCategoria) {
+                    System.out.println("6:" + j.getCategoria().getDescricao() + ";" 
+                                            + j.getCodigo() + ";"
+                                            + j.getNome());
+                }
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("6:erro-categoria inexistente.");
+        }
+
+        // Passo 7
+        int numero = Integer.parseInt(IO.getEntrada());
+        String nome = IO.getEntrada();
+
+        cliente = clientes.buscar(numero);
+        if (cliente == null) {
+            System.out.println("7:erro-numero inexistente.");
+        } else {
+            cliente.setNome(nome);
+            System.out.println(cliente.descrever().replaceFirst("1","7"));
+        }
+
+        // Passo 8
+        codigo = Integer.parseInt(IO.getEntrada());
+
+        jogo = jogos.buscar(codigo);
+        if (jogo == null){
+            System.out.println("8:erro-codigo inexistente.");
+        } else {
+            ArrayList<Contrato> lista_contratos = contratos.buscar(jogo);
+            if (!lista_contratos.isEmpty()) {
+                for (Contrato c : lista_contratos) {
+                    System.out.println("8:contrato removido: " + c.getId());
+                    contratos.remover(c);
+                }
+            } else { System.out.println("8:nenhum contrato encontrado."); }
+        }
+            
+        // Passo 9
+        ArrayList<Contrato> lista_contratos = contratos.getCopyOfContratos();
+        if (!lista_contratos.isEmpty()) {
+            for (Contrato c : lista_contratos) {
+                System.out.println(c.descrever().replaceFirst("4","9"));
+            }
+        } else { System.out.println("9:erro-nenhum contrato cadastrado."); }
+
+        // Passo 10
+        lista_contratos = contratos.getCopyOfContratos();
+        if (!lista_contratos.isEmpty()) {  
+            double maiorValor = 0.0;
+            Cliente clienteMaiorValor = null;
+            
+            for (Contrato c : lista_contratos) {
+                int numeroCliente = c.getCliente().getNumero();
+                double somaCliente = 0.0;
+                
+                for (Contrato cc : lista_contratos) {
+                    if (cc.getCliente().getNumero() == numeroCliente) {
+                        somaCliente += cc.getJogo().getValorMinuto();
+                    }
+                }
+                if (somaCliente > maiorValor) {
+                    maiorValor = somaCliente;
+                    clienteMaiorValor = c.getCliente();
+                }
+            }
+
+            if (clienteMaiorValor != null) {
+                System.out.print("10:" + clienteMaiorValor.getNumero() + ";" 
+                                         + clienteMaiorValor.getNome() + ";"
+                                         + clienteMaiorValor.getEmail() + ";"
+                                         + String.format("%.1f", maiorValor));
+            }
+        } else { System.out.print("10:erro-nenhum contrato encontrado."); }
     }
    
 }

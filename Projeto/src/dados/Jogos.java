@@ -5,61 +5,44 @@ import java.util.ArrayList;
 public class Jogos {
     private ArrayList<Jogo> jogos = new ArrayList<>();
 
-    public void adicionar(Jogo j){
-        if (buscar(j.getCodigo()) == null){
-            jogos.add(j);
-            System.out.println(j.descrever());
-        } else {
-           System.out.println("3:erro-codigo repetido.");
-        }
+    public boolean adicionar(Jogo jogo){
+        if (buscar(jogo.getCodigo()) == null){
+            jogos.add(jogo);
+            return true;
+        } 
+        return false;
     }
 
-    public boolean remover(Jogo j){
-        return jogos.remove(j);
+    public boolean remover(Jogo jogo){
+        return jogos.remove(jogo);
     }
 
-    public boolean remover(int n){
-        return jogos.remove(buscar(n));
+    public boolean remover(int codigo){
+        return jogos.remove(buscar(codigo));
     }
 
-    public Jogo buscar(int n){
+    public Jogo buscar(int codigo){
         for (Jogo jogo : jogos) {
-            if (jogo.getCodigo() == n) return jogo;
+            if (jogo.getCodigo() == codigo) return jogo;
         }
         return null;
     }
 
-    public ArrayList<Jogo> buscar(Categoria cat){
+    public ArrayList<Jogo> buscar(Categoria categoria){
         ArrayList<Jogo> temp = new ArrayList<>();
         for (Jogo jogo : jogos) {
-            if (jogo.getCategoria().equals(cat)) {
+            if (jogo.getCategoria().equals(categoria)) {
                 temp.add(jogo);
             }
         }
         return temp;
     }
 
-    public void consultarJogoCodigo(int cod) {
-        Jogo jogo = buscar(cod);
-        if (jogo == null) {
-            System.out.println("5:erro-codigo inexistente.");
-        } else {
-            System.out.println("5:" + jogo.getCodigo() + ";" 
-                                    + jogo.getNome() + ";"
-                                    + jogo.getCategoria().getDescricao());
+    public ArrayList<Jogo> getCopyOfJogos(){
+        ArrayList<Jogo> copia = new ArrayList<>(jogos.size());
+        for (Jogo j : jogos) {
+            copia.add(j);
         }
-    }
-
-    public void consultarJogoCategoria(Categoria cat) {
-        ArrayList<Jogo> jogosCategoria = buscar(cat);
-        if (jogosCategoria.isEmpty()) {
-            System.out.println("6:erro-nenhum jogo encontrado.");
-        } else {
-            for (Jogo jogo : jogosCategoria) {
-                System.out.println("6:" + jogo.getCategoria().getDescricao() + ";" 
-                                        + jogo.getCodigo() + ";"
-                                        + jogo.getNome());
-            }
-        }
+        return copia;
     }
 }

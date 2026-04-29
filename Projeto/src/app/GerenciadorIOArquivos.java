@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class GerenciadorIOArquivos {
     // Atributos para redirecionamento de E/S
-    public Scanner entrada = new Scanner(System.in);;
+    private Scanner entrada = new Scanner(System.in);
     private PrintStream saidaPadrao = System.out;
     private final String nomeArquivoEntrada;
     private final String nomeArquivoSaida;
