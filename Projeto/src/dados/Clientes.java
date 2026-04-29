@@ -1,15 +1,35 @@
 package dados;
 
-public abstract class Clientes {
-    private int numero;
-    private String nome;
-    private String email;
+import java.util.ArrayList;
 
-    public Clientes(int numero, String nome, String email) {
-        this.numero = numero;
-        this.nome = nome;
-        this.email = email;
+public class Clientes {
+    private ArrayList<Cliente> clientes = new ArrayList<>();
+
+    public void adicionar(Cliente c){
+        if (buscar(c.getNumero()) == null){
+            clientes.add(c);
+            System.out.println(c.descrever());
+        } else {
+            if (c instanceof ClienteIndividual) {
+                System.out.println("1:erro-numero repetido.");
+            } else {
+                System.out.println("2:erro-numero repetido.");
+            }
+        }
     }
 
-    public abstract String descrever();
+    public boolean remover(Cliente c){
+        return clientes.remove(c);
+    }
+
+    public boolean remover(int n){
+        return clientes.remove(buscar(n));
+    }
+
+    public Cliente buscar(int n){
+        for (Cliente cliente : clientes) {
+            if (cliente.getNumero() == n) return cliente;
+        }
+        return null;
+    }
 }

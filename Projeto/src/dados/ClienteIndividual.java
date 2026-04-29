@@ -1,6 +1,6 @@
 package dados;
 
-public class ClienteIndividual extends Clientes {
+public class ClienteIndividual extends Cliente {
     private String cpf;
 
     public ClienteIndividual(int numero, String nome, String email, String cpf) {
@@ -8,8 +8,19 @@ public class ClienteIndividual extends Clientes {
         this.cpf = cpf;
     }
 
+    public String getCpf() {
+        return this.cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
     @Override
     public String descrever() {
-        return null;
+        return "1:" + getNumero() + ";" 
+                    + getNome() + ";"
+                    + getEmail() + ";"
+                    + getCpf();
     }
 }
