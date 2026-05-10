@@ -11,7 +11,6 @@ public class ACMESpiele {
     private Contratos contratos = new Contratos();
 
     public ACMESpiele() {
-        // Inicializa o gerenciador de E/S e redireciona entrada/saída
         IO.redirecionaEntrada();
         IO.redirecionaSaida();
     }
@@ -105,6 +104,8 @@ public class ACMESpiele {
 
             if (contratos.adicionar(contrato)) {
                 System.out.println(contrato.descrever());
+                cliente.addContrato(contrato);
+                jogo.addContrato(contrato);
             } else { System.out.println("4:erro-id repetido."); }
         }
 
@@ -166,7 +167,7 @@ public class ACMESpiele {
         }
             
         // Passo 9
-        ArrayList<Contrato> lista_contratos = contratos.getCopyOfContratos();
+        ArrayList<Contrato> lista_contratos = contratos.getCopia();
         if (!lista_contratos.isEmpty()) {
             for (Contrato c : lista_contratos) {
                 System.out.println(c.descrever().replaceFirst("4","9"));
@@ -174,7 +175,7 @@ public class ACMESpiele {
         } else { System.out.println("9:erro-nenhum contrato cadastrado."); }
 
         // Passo 10
-        lista_contratos = contratos.getCopyOfContratos();
+        lista_contratos = contratos.getCopia();
         if (!lista_contratos.isEmpty()) {  
             double maiorValor = 0.0;
             Cliente clienteMaiorValor = null;

@@ -48,7 +48,7 @@ public class Contratos {
         return temp;
     }
 
-    public ArrayList<Contrato> getCopyOfContratos(){
+    public ArrayList<Contrato> getCopia(){
         ArrayList<Contrato> copia = new ArrayList<>(contratos.size());
         for (Contrato c : contratos) {
             copia.add(c);

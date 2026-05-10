@@ -1,11 +1,14 @@
 package dados;
 
+import java.util.ArrayList;
+
 public class Jogo {
     private int codigo;
     private String nome;
     private int ano;
     private double valorMinuto;
     private Categoria categoria;
+    private ArrayList<Contrato> contratos;
 
 
     public Jogo(int codigo, String nome, int ano, double valorMinuto, Categoria categoria) {
@@ -14,6 +17,7 @@ public class Jogo {
         this.ano = ano;
         this.valorMinuto = valorMinuto;
         this.categoria = categoria;
+        contratos = new ArrayList<>();
     }
 
     public int getCodigo() {
@@ -54,6 +58,18 @@ public class Jogo {
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
+    }
+
+    public void addContrato(Contrato contrato) {
+        contratos.add(contrato);
+    }
+
+    public ArrayList<Contrato> getContratos() {
+        ArrayList<Contrato> aux = new ArrayList<>();
+        for (Contrato c : contratos) {
+            aux.add(c);
+        }
+        return aux;
     }
 
     public String descrever() {

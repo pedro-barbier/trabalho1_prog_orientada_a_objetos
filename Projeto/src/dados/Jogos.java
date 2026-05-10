@@ -38,7 +38,7 @@ public class Jogos {
         return temp;
     }
 
-    public ArrayList<Jogo> getCopyOfJogos(){
+    public ArrayList<Jogo> getCopia(){
         ArrayList<Jogo> copia = new ArrayList<>(jogos.size());
         for (Jogo j : jogos) {
             copia.add(j);

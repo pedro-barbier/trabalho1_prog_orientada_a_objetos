@@ -28,7 +28,7 @@ public class Clientes {
         return null;
     }
 
-    public ArrayList<Cliente> getCopyOfClientes(){
+    public ArrayList<Cliente> getCopia(){
         ArrayList<Cliente> copia = new ArrayList<>(clientes.size());
         for (Cliente c : clientes) {
             copia.add(c);
