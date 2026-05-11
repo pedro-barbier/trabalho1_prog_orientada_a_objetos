@@ -147,7 +147,12 @@ public class ACMESpiele {
             System.out.println("7:erro-numero inexistente.");
         } else {
             cliente.setNome(nome);
-            System.out.println(cliente.descrever().replaceFirst("1","7"));
+            if (cliente instanceof ClienteIndividual) {
+                System.out.println(cliente.descrever().replaceFirst("^.","7"));
+            } else {
+                // remove o último campo (nome fantasia) da descrição do cliente corporativo
+                System.out.println(cliente.descrever().replaceFirst("^.","7").substring(0, cliente.descrever().lastIndexOf(";")));
+            }
         }
 
         // Passo 8
@@ -196,12 +201,12 @@ public class ACMESpiele {
             }
 
             if (clienteMaiorValor != null) {
-                System.out.print("10:" + clienteMaiorValor.getNumero() + ";" 
+                System.out.println("10:" + clienteMaiorValor.getNumero() + ";" 
                                          + clienteMaiorValor.getNome() + ";"
                                          + clienteMaiorValor.getEmail() + ";"
                                          + String.format("%.1f", maiorValor));
             }
-        } else { System.out.print("10:erro-nenhum contrato encontrado."); }
+        } else { System.out.println("10:erro-nenhum contrato encontrado."); }
     }
    
 }
